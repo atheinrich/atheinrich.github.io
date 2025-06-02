@@ -10,8 +10,7 @@
 /* Imports */
 @import url("reset.css");
 @import url("pygment.css");
-@import url(http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz&subset=latin);
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz&subset=latin);
 
 /***** Global *****/
 /* Body */
@@ -20,7 +19,7 @@ body {
     background-repeat: repeat-x;
     color: #000305;
     font-size: 87.5%; /* Base font size: 14px */
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Trebuchet MS', Trebuchet, 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     line-height: 1.429;
     margin: 0;
     padding: 0;
