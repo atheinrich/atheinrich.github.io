@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <title>eigenblog</title>
+        <title>⟨𝜓|eigenblog⟩</title>
         <meta charset="utf-8" />
+		<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
         <link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
-        <link href="/" type="application/atom+xml" rel="alternate" title="eigenblog ATOM Feed" />
+        <link href="/" type="application/atom+xml" rel="alternate" title="⟨𝜓|eigenblog⟩ ATOM Feed" />
 
 
         <!--[if IE]>
@@ -21,29 +23,172 @@
 
 <body id="index" class="home">
         <header id="banner" class="body">
-                <h1><a href="">eigenblog </a></h1>
+                <h1><a href="">⟨𝜓|eigenblog⟩ </a></h1>
                 <nav><ul>
                         <li >
                             <a href="/pages/about.html">about</a>
                         </li>
                     <li ><a href="/category/math.html">math</a></li>
                     <li ><a href="/category/physics.html">physics</a></li>
+                    <li ><a href="/category/test.html">test</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
         
         
         <aside id="featured" class="body"><article>
-                <h1 class="entry-title"><a href="/math-test-1.html">Math Test 1</a></h1> 
+                <h1 class="entry-title"><a href="/counting-to-infinity.html">Counting to Infinity</a></h1> 
 <footer class="post-info">
 
-<p>tags: <a href="/tag/test.html">test</a></p></p>
-</footer><!-- /.post-info -->                <p>Test body text 1.</p>
+<p>tags: <a href="/tag/series.html">series</a></p></p>
+</footer><!-- /.post-info -->                <div class="section" id="bone-and-clay">
+<h2>Bone and Clay</h2>
+<p>If you look around, everything can be described by mathematics in one way or another.
+The <em>integers</em> are the most intuitive: this sentence has 4 numbers, 5 punctuation marks, 18 words… all things you can count.
+Likely for this reason, the earliest evidence of mathematics is a simple set of tally marks etched in a quartz-tipped bone from over 20,000 years ago.
+The number 3, for example, is found near the top in the form of three consecutive notches.</p>
+<div class="math">
+\begin{equation*}
+\textrm{III} \rightarrow  3
+\end{equation*}
+</div>
+<p>There is a lot of power in this notation.
+It sets a singular unit — one — that can be repeated as many times as necessary to count as many things as you need.
+For practical purposes, this was clearly satisfactory; a period of 16,000 years passed before the next class of numbers appeared on record.
+Stamped purposefully across a flattened block of clay, dozens of <em>rational numbers</em> can be found in an ancient Babylonian tablet, unceremoniously dubbed Plimpton 322.
+The fifth row of script is particularly clear in showing three fractions scribed in cuneiform as a sequence of integers in base-60
+— like counting seconds and hours on a clock, this numerical system adds a digit when passing from 59 to 60 instead of 9 to 10.
+Here, we see these terms in their original cuneiform, their translations in Arabic numerals, and the fractions they ultimately represent.</p>
+<div class="math">
+\begin{equation*}
+𒐕\ 𒐏𒐜\ 𒐐𒐘\ 𒐕\ 𒐏\ \rightarrow \ \frac{1}{60^0} + \frac{48}{60^1} + \frac{54}{60^2} + \frac{1}{60^3} +\frac{40}{60^4} = \frac{97^2}{72^2}
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+\hspace{-3.3cm} 𒐕\ 𒐐\ \hspace{4.3em} \rightarrow \ \frac{1}{60^0} + \frac{5}{60^1} = \frac{65}{60} \ \ \ \ \ \ \ \ \
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+\hspace{-4.3cm} 𒐕\ 𒌍𒐛\ \hspace{3em} \rightarrow \ \frac{1}{60^0} + \frac{37}{60^1} = \frac{97}{60}
+\end{equation*}
+</div>
+<p>If you look closely, you'll find the famous theorem of Pythagoras illustrated here as 65² + 72² = 97².
+We'll get to this zany character in a moment.
+Another Babylonian tablet — pressed in the same millennium and titled YBC 7289 in a similarly unsavory fashion — takes the first recorded step towards <em>irrational numbers</em>.
+This round chunk of clay holds the first known approximation of the square root of two, whose fractional representation is now known to be infinite in extent.</p>
+<div class="math">
+\begin{equation*}
+\hspace{-0.1cm} 𒐕\ ⟪𒐘\ 𒐐𒐕\ 𒌋\ \hspace{1.6em} \rightarrow \ \frac{1}{60^0} + \frac{24}{60^1} + \frac{51}{60^2} + \frac{10}{60^3} = 1.41421\overline{296}
+\end{equation*}
+</div>
+<p>After another millennium, this strange number became the bane of the Pythagorean cult of saintly geeks.
+They considered the simplest nontrivial case of his theorem: a triangle with perpendicular sides of unit length.
+To their grief, there is neither an integer nor a fraction satisfying the equation 1² + 1² = 𝑥².
+This was shown rigorously by the great Euclid, whose detailed proof of the Pythagorean theorem remains the earliest in recorded history.
+His concrete revelation of an endless number — especially as it arises in the simplest of geometries — provoked fiery philosophical and mathematical debate.
+Motivated by this challenge, Zeno of Elea took the stage a couple of centuries later.
+This master of paradoxes introduced a tangible yet enigmatic approach to endlessness in terms of an <em>infinite</em> series of fractions.
+He pondered a simple problem: if every step traveled is half of the distance towards your destination, you would need an infinite number of steps to reach it.
+This is best illustrated schematically by the splitting of a square.</p>
+<div style="text-align: center;">
+  <img src="/images/infinite_series.png" alt="recursively partitioned square" width="400" />
+</div><p>Zeno's infinite series paradox is intriguing even to the modern scholar.
+Although devised in terms of fractions, it is countable in essence: you can easily tally every step as an etching on a bone or a stamp in soft clay.
+And yet, far before reaching your destination, the bone would be chiseled to dust, the clay rendered illegible.
+Fortunately, we have learned how to deal with this complication — the seasoned reader might recall the convergence of the infinite geometric series.
+Even so, it was not for another millennium that infinity was granted its own symbol, appropriately scribed as <span class="math">\(\infty\)</span> by an English cryptographer, John Wallis.
+Through our adoption of this mark, we can refer to an endless infinity with a simple squiggle on paper instead of an impossibly etched bone,
+yet this gloss only masks its elusive and problematic air.
+To wit, infinity has never appeared in any physical measurement or observation, and we still struggle to handle its immensity in theory.
+Methods of truncating it to something manageable have been introduced — Cauchy's principle value is a notable example that remains critical in quantum electrodynamics
+— but those are complicated stories for another time.
+For now, you may bask in its incommensurate complexity and appreciate the millennia it took to define.
+Else, as you count sheep in bed, perhaps you will feel a new solace in knowing you will fall asleep long before infinity is reached.</p>
+</div>
+<script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
                 </article>
                 </aside><!-- /#featured -->
             <section id="content" class="body">
                 <h1>Other articles</h1>
                 <hr />
                     <ol id="posts-list" class="hfeed">
+        
+ 
+        <li><article class="hentry">    
+                <header>
+                        <h1><a href="/math-test-1.html" rel="bookmark" title="Permalink to Math Test 1">Math Test 1</a></h1>
+                </header>
+                
+                <div class="entry-content">
+<footer class="post-info">
+
+<p>tags: <a href="/tag/test.html">test</a></p></p>
+</footer><!-- /.post-info -->                <p>Test body text 1.</p>
+                <a class="readmore" href="/math-test-1.html">read more</a>
+                </div><!-- /.entry-content -->
+        </article></li>
         
  
         <li><article class="hentry">    
@@ -89,6 +234,108 @@
                 <a class="readmore" href="/physics-test-2.html">read more</a>
                 </div><!-- /.entry-content -->
         </article></li>
+        
+ 
+        <li><article class="hentry">    
+                <header>
+                        <h1><a href="/primary-title.html" rel="bookmark" title="Permalink to Primary Title">Primary Title</a></h1>
+                </header>
+                
+                <div class="entry-content">
+<footer class="post-info">
+
+<p>tags: <a href="/tag/test.html">test</a></p></p>
+</footer><!-- /.post-info -->                <div class="section" id="secondary-title">
+<h2>Secondary Title</h2>
+<p>Text formatting:
+regular,
+<em>italic</em>,
+<strong>bold</strong>,
+<a class="reference external" href="https://github.com/atheinrich/">linked</a>,
+<tt class="docutils literal">inline</tt>,
+<span class="math">\(_\textrm{subscript}\)</span>,
+<span class="math">\(^\textrm{superscript}\)</span>.</p>
+<p>Newline and blank newlines.</p>
+<br><div class="section" id="secondary-title-1">
+<h3>Secondary Title</h3>
+<p><span class="math">\(\textrm{inline} = (\textrm{math})^2\)</span></p>
+<div class="math">
+\begin{align*}
+\textrm{block}  &amp;=  (\textrm{math})^2 \\
+                &amp;=  \int_{0}^{\tau}{\gamma\dot{x}\ dx}
+\end{align*}
+</div>
+<div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(.env)</span> <span class="gp">$ </span>Console<span class="w"> </span>syntax<span class="w"> </span>highlighting.
+</pre></div>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">python_syntax_highlighting</span><span class="p">():</span>
+    <span class="k">pass</span>
+</pre></div>
+<pre class="doctest-block">
+&gt;&gt;&gt; Doctest highlighting …</pre></div></div><script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+                <a class="readmore" href="/primary-title.html">read more</a>
+                </div><!-- /.entry-content -->
+        </article></li>
 </ol><!-- /#posts-list -->
 </section><!-- /#content -->
         <section id="extras" class="body">
@@ -101,7 +348,6 @@
                 <div class="social">
                         <h2>social</h2>
                         <ul>
-                            <li><a href="/" rel="alternate">atom feed</a></li>
 
                             <li><a href="Link">Name</a></li>
                         </ul>
