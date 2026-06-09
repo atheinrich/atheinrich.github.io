@@ -28,7 +28,7 @@ jobs:
         with:
           API_KEY: ${{ secrets.NEKOWEB_API_KEY }}
           BUILD_DIR: './build'
-          DEPLOY_DIR: '/'
+          DEPLOY_DIR: '/cup.nekoweb.org'
           CLEANUP: 'False'
           DELAY: '5'
           NEKOWEB_PAGENAME: 'cup'
