@@ -1,0 +1,25 @@
+{#  Page for one specific category.
+
+    Extends index.html.
+
+    ---------------------------------------------------------------------
+
+    CSS classes used:
+        None
+
+    Pelican settings used:
+        None
+
+    Pelican data used:
+        category            -> the name of the current category, used for the page title
+
+    Pelican fields used:
+        None
+#}
+
+
+{% extends "index.html" %}
+
+{% block title %}
+    {{ SITENAME }} - {{ category }}
+{% endblock %}

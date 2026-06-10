@@ -1,0 +1,53 @@
+{#  Article metadata.
+
+    ---------------------------------------------------------------------
+
+    CSS classes used:
+        tags                -> the container for the article's tags
+        tags-label          -> the "tags:" label before the list of tags
+        tag                 -> each individual tag link
+        pdf-link            -> the optional PDF link section
+
+    Pelican settings used:
+        SITEURL             -> base URL prepended to each article URL for the tag links and PDF link
+        PDF_PROCESSOR       -> if set, enables PDF generation and the PDF link
+
+    Pelican data used:
+        article             -> the article object for the current page
+        tag                 -> the name of the current tag, used for the page title
+
+    Pelican fields used:
+        article.tags        -> the list of tags for this article, used for the tag links
+        article.slug        -> the slug of the article, used for the PDF link
+        tag.url             -> URL to the generated tag page, used for the tag links
+#}
+
+
+{# Article tags #}
+{% if article.tags %}
+
+    <p class="tags">
+        <span class="tags-label">tags:</span>
+
+        {% for tag in article.tags %}
+
+            <a class="tag"
+               href="{{ SITEURL }}/{{ tag.url }}">
+                {{ tag }}
+            </a>
+
+        {% endfor %}
+    </p>
+
+{% endif %}
+
+{# Optional PDF link, appearing if PDF_PROCESSOR is enabled #}
+{% if PDF_PROCESSOR %}
+
+    <p class="pdf-link">
+        <a href="{{ SITEURL }}/pdf/{{ article.slug }}.pdf">
+            get the pdf
+        </a>
+    </p>
+
+{% endif %}

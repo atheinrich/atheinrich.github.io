@@ -1,0 +1,27 @@
+{#  Article metadata.
+
+    Usually included inside article.html and index.html through:
+        {% include 'article_infos.html' %}
+
+    Right now, this only delegates to taglist.html, which displays
+    article tags and possibly a PDF link if PDF_PROCESSOR is enabled.
+    
+    ---------------------------------------------------------------------
+
+    CSS classes used:
+        post-info           -> the whole metadata section
+
+    Pelican settings used:
+        None
+
+    Pelican data used:
+        None
+    
+    Pelican fields used:
+        None
+#}
+
+
+<footer class="post-info">
+    {% include 'taglist.html' %}
+</footer>

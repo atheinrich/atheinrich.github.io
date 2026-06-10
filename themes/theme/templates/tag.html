@@ -1,0 +1,24 @@
+{#  Page for one specific tag.
+
+    ---------------------------------------------------------------------
+
+    CSS classes used:
+        None
+
+    Pelican settings used:
+        SITENAME            -> site name displayed in the page heading
+
+    Pelican data used:
+        tag                 -> the name of the current tag, used for the page title
+
+    Pelican fields used:
+        None
+#}
+
+
+{% extends "index.html" %}
+
+{# Browser/page title, with article-list layout from index.html #}
+{% block title %}
+    {{ SITENAME }} - {{ tag }}
+{% endblock %}

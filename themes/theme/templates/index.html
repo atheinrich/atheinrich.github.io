@@ -1,0 +1,159 @@
+{#  Article-list pages.
+
+    Used for the main homepage/blog index.
+
+    ---------------------------------------------------------------------
+
+    CSS classes used:
+        body                -> the main content section
+        featured-post       -> the first/newest article, shown in full
+        entry-title         -> the title of each article, shown in both the featured and summary views
+        hfeed               -> the list of articles in summary view
+        hentry              -> each article in summary view
+        post-summary        -> the remaining articles, shown as summaries
+        readmore            -> the "read more" link for each summary
+        page-list           -> the list of standalone pages shown in the fallback behavior when no articles are found
+        entry-content       -> the main article body, shown in both the featured and summary views
+
+    Pelican settings used:
+        SITEURL             -> base URL prepended to each article URL
+
+    Pelican data used:
+        articles            -> the list of articles to display on this page
+        article             -> the current article object, used for navigation and Disqus comments
+        pages               -> iterable of standalone page objects, used for fallback behavior if no articles are found
+        page                -> the current page object, used for navigation and Disqus comments
+
+     Pelican fields used:
+        articles|length     -> the number of articles in the current list, used to determine whether to show the summary view
+        article.title       -> the article title
+        article.url         -> URL to the generated article page, used for the permalink
+        article.content     -> the full rendered article body, including any HTML formatting
+        article.summary     -> the summary of the article, used for the summary view
+        page.title          -> the page title, used in the fallback behavior if no articles are found
+        page.url            -> URL to the generated page, used for navigation in the fallback behavior if
+#}
+
+
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% if articles %}
+
+        {# First/newest article, shown in full #}
+        {% for article in articles %}
+
+            {% if loop.first %}
+
+                <aside id="featured" class="body">
+
+                    <article class="featured-post">
+
+                        <h1 class="entry-title">
+                            <a href="{{ SITEURL }}/{{ article.url }}">
+                                {{ article.title }}
+                            </a>
+                        </h1>
+
+                        {% include 'article_infos.html' %}
+
+                        {{ article.content }}
+
+                        {% include 'comments.html' %}
+
+                    </article>
+
+                </aside>
+
+            {% endif %}
+
+        {% endfor %}
+
+
+        {# Remaining articles, shown as summaries #}
+        {% if articles|length > 1 %}
+
+            <section id="content" class="body">
+
+                {% block content_title %}
+                    <h1>Other articles</h1>
+                {% endblock %}
+
+                <hr />
+
+                <ol id="posts-list" class="hfeed">
+
+                    {% for article in articles %}
+
+                        {% if not loop.first %}
+
+                            <li>
+
+                                <article class="hentry post-summary">
+
+                                    <header>
+                                        <h1>
+                                            <a href="{{ SITEURL }}/{{ article.url }}"
+                                               rel="bookmark"
+                                               title="Permalink to {{ article.title|striptags }}">
+                                                {{ article.title }}
+                                            </a>
+                                        </h1>
+                                    </header>
+
+                                    <div class="entry-content">
+
+                                        {% include 'article_infos.html' %}
+
+                                        {{ article.summary }}
+
+                                        <a class="readmore"
+                                           href="{{ SITEURL }}/{{ article.url }}">
+                                            read more
+                                        </a>
+
+                                        {% include 'comments.html' %}
+
+                                    </div>
+
+                                </article>
+
+                            </li>
+
+                        {% endif %}
+
+                    {% endfor %}
+
+                </ol>
+
+            </section>
+
+        {% endif %}
+
+    {# Fallback behavior, showing standalone pages if no articles are found #}
+    {% else %}
+
+        <section id="content" class="body">
+
+            <h2>Pages</h2>
+
+            <ul class="page-list">
+
+                {% for page in pages %}
+
+                    <li>
+                        <a href="{{ SITEURL }}/{{ page.url }}">
+                            {{ page.title }}
+                        </a>
+                    </li>
+
+                {% endfor %}
+
+            </ul>
+
+        </section>
+
+    {% endif %}
+
+{% endblock content %}

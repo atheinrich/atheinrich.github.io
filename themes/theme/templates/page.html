@@ -1,0 +1,62 @@
+{#  Standalone pages.
+
+    ---------------------------------------------------------------------
+
+    CSS classes used:
+        entry-title         -> the page title
+        pdf-link            -> the optional PDF link section
+        page-content        -> the main rendered page content section
+        body                -> the main content section
+        page                -> the page-specific content section, used for styling standalone pages differently from articles
+
+    Pelican settings used:
+        PDF_PROCESSOR       -> if set, enables PDF generation and the PDF link
+        SITEURL             -> base URL prepended to each article URL for the PDF link
+
+    Pelican data used:
+        page                -> the page object for the current page
+
+     Pelican fields used:
+        page.title          -> the page title
+        page.content        -> the full rendered page body, including any HTML formatting
+        page.slug           -> the slug of the page, used for the PDF link
+#}
+
+
+{% extends "base.html" %}
+
+{# Browser/page title, inserted into the <title> tag in base.html #}
+{% block title %}
+    {{ page.title }}
+{% endblock %}
+
+{% block content %}
+
+    <section id="content" class="body page">
+
+        {# Page heading #}
+        <h1 class="entry-title">
+            {{ page.title }}
+        </h1>
+
+        {# Optional PDF link, appearing if PDF_PROCESSOR is enabled in config #}
+        {% if PDF_PROCESSOR %}
+
+            <p class="pdf-link">
+                <a href="{{ SITEURL }}/pdf/{{ page.slug }}.pdf">
+                    get the pdf
+                </a>
+            </p>
+
+        {% endif %}
+
+        {# Main rendered page content, generated from the md, rst, or html source #}
+        <div class="page-content">
+
+            {{ page.content }}
+
+        </div>
+
+    </section>
+
+{% endblock %}

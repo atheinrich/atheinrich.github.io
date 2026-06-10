@@ -1,0 +1,59 @@
+{#  Site-wide tag index page.
+
+    This is different from:
+        tag.html     -> page for one specific tag
+        taglist.html -> tags shown on one specific article
+
+    ---------------------------------------------------------------------
+
+    CSS classes used:
+        tag-cloud           -> the container for the tag cloud
+        tag-cloud-item      -> each individual tag in the cloud, with a size class like tag
+        tag-1               -> the smallest tag size class
+        tag-2               -> the next size class, and so on for larger tags
+        entry-title         -> the page title
+        body                -> the main content section
+
+    Pelican settings used:
+        SITEURL             -> base URL prepended to each tag URL
+
+    Pelican data used:
+        tag_cloud           -> iterable of (tag, size) tuples for the tag cloud
+        tag                 -> the name of the current tag, used for the page title
+
+     Pelican fields used:
+        tag.0               -> the tag object itself, used for the tag name and URL
+        tag.0.url           -> URL to the generated tag page, used for the tag links
+        tag.1               -> the tag size/rank class, used for the CSS class
+#}
+
+
+{% extends "base.html" %}
+
+{% block title %}
+    Tags
+{% endblock %}
+
+{% block content %}
+
+    <section id="content" class="body">
+
+        <h1 class="entry-title">Tags</h1>
+
+        <ul id="cloud" class="tag-cloud">
+
+            {% for tag in tag_cloud %}
+
+                <li class="tag-cloud-item tag-{{ tag.1 }}">
+                    <a href="{{ SITEURL }}/{{ tag.0.url }}">
+                        {{ tag.0 }}
+                    </a>
+                </li>
+
+            {% endfor %}
+
+        </ul>
+
+    </section>
+
+{% endblock %}

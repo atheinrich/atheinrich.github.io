@@ -1,0 +1,60 @@
+{#  Page listing all article categories.
+
+    Extends base.html and fills in the main "content" block.
+
+    ---------------------------------------------------------------------
+
+    CSS classes used:
+        body                -> the main content section
+        entry-title         -> the page title
+        category-list       -> the whole list
+        category-item       -> the date of each article
+        category-count      -> the number of categories
+
+    Pelican settings used:
+        SITEURL             -> base URL prepended to each category URL
+
+    Pelican data used:
+        categories          -> iterable of (category, articles) tuples, used for navigation
+        category            -> the name of an article category, used for navigation
+        articles            -> the list of articles in the current category, used to count the number of articles
+
+     Pelican fields used:
+        category.url        -> URL to the generated category page, used for navigation
+        articles|length     -> the number of articles in the current category
+#}
+
+
+{% extends "base.html" %}
+
+{% block title %}
+    Categories
+{% endblock %}
+
+{% block content %}
+
+    <section id="content" class="body">
+
+        <h1 class="entry-title">Categories</h1>
+
+        <ul class="category-list">
+
+            {% for category, articles in categories %}
+
+                <li class="category-item">
+                    <a href="{{ SITEURL }}/{{ category.url }}">
+                        {{ category }}
+                    </a>
+
+                    <span class="category-count">
+                        {{ articles|length }} articles
+                    </span>
+                </li>
+
+            {% endfor %}
+
+        </ul>
+
+    </section>
+
+{% endblock %}

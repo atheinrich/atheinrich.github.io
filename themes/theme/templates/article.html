@@ -1,0 +1,99 @@
+{#  Individual article/post page.
+
+    Extends base.html and fills in:
+        - the browser/page title
+        - the main article content
+        - the optional Disqus comments section
+    
+    The title block is used by base.html inside the <title> tag.
+    For an article page, the article's title is used instead of the generic site name.
+
+    ---------------------------------------------------------------------
+
+    CSS classes used:
+        body                -> the main content section
+        post                -> the whole article section
+        post-header         -> the article header, containing the title
+        entry-title         -> the article title
+        entry-content       -> the main article body
+        comments            -> the Disqus comments section
+
+    Pelican settings:
+        DISQUS_SITENAME     -> if set, enables Disqus comments with the given site name
+        SITEURL             -> base URL prepended to the article URL for the permalink
+
+    Pelican data used:
+        article             -> the article object for the current page
+
+    Pelican fields used:
+        article.title       -> the article title
+        article.title|striptags -> the article title with HTML tags removed
+        article.url         -> URL to the generated article page, used for the permalink and Disqus identifier
+        article.content     -> the full rendered article body, including any HTML formatting
+#}
+
+
+{% extends "base.html" %}
+
+{% block title %}
+    {{ article.title }}
+{% endblock %}
+
+{% block content %}
+
+    <section id="content" class="body">
+
+        <article class="post">
+
+            {# Article header: title and permalink #}
+            <header class="post-header">
+
+                <h1 class="entry-title">
+                    <a href="{{ SITEURL }}/{{ article.url }}"
+                       rel="bookmark"
+                       title="Permalink to {{ article.title|striptags }}">
+                        {{ article.title }}
+                    </a>
+                </h1>
+
+            </header>
+
+            {# Main article body #}
+            <div class="entry-content">
+                {% include 'article_infos.html' %}
+                {{ article.content }}
+            </div>
+
+            {# Optional Disqus comments #}
+            {% if DISQUS_SITENAME %}
+
+                <div class="comments">
+
+                    <h2>Comments</h2>
+
+                    <div id="disqus_thread"></div>
+
+                    <script>
+                        var disqus_identifier = "{{ article.url }}";
+
+                        (function() {
+                            var dsq = document.createElement("script");
+
+                            dsq.type = "text/javascript";
+                            dsq.async = true;
+                            dsq.src = "https://{{ DISQUS_SITENAME }}.disqus.com/embed.js";
+
+                            (document.getElementsByTagName("head")[0] ||
+                             document.getElementsByTagName("body")[0]).appendChild(dsq);
+                        })();
+                    </script>
+
+                </div>
+
+            {% endif %}
+
+        </article>
+
+    </section>
+
+{% endblock %}

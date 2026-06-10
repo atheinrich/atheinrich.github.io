@@ -1,0 +1,57 @@
+{#  Archive page: a compact list of all articles, usually ordered by date.
+
+    Extends base.html and fills in the "content" block.
+
+    ---------------------------------------------------------------------
+
+    CSS classes used:
+        body                -> the main content section
+        archive-list        -> the whole archive list
+        archive-date        -> the date of each article
+        archive-entry       -> the title/link entry for each article
+
+    Pelican settings used:
+        SITENAME            -> site name displayed in the page heading
+        SITEURL             -> base URL prepended to each article URL
+
+    Pelican data used:
+        dates               -> iterable of article objects
+        article             -> the current article object, used for navigation and Disqus comments
+
+    Pelican fields used:
+        article.title       -> the article title
+        article.url         -> URL to the generated article page
+        article.locale_date -> publication date, formatted for display
+#}
+
+
+{% extends "base.html" %}
+
+{% block content %}
+
+    <section id="content" class="body">
+
+        {# Page heading #}
+        <h1>Archives for {{ SITENAME }}</h1>
+
+        <dl class="archive-list">
+
+            {% for article in dates %}
+
+                <dt class="archive-date">
+                    {{ article.locale_date }}
+                </dt>
+
+                <dd class="archive-entry">
+                    <a href="{{ SITEURL }}/{{ article.url }}">
+                        {{ article.title }}
+                    </a>
+                </dd>
+
+            {% endfor %}
+
+        </dl>
+
+    </section>
+
+{% endblock %}

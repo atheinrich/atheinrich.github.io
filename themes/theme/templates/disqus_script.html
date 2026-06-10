@@ -1,0 +1,46 @@
+{#  Disqus comment counts.
+
+    Included near the bottom of base.html:
+        {% include 'disqus_script.html' %}
+
+    Does NOT create the full comment section, which is handled in article.html.
+
+    Only displays anything if DISQUS_SITENAME is set in pelicanconf.py. For example:
+        DISQUS_SITENAME = "your-disqus-name"
+
+    ---------------------------------------------------------------------
+
+    CSS classes used:
+        None
+
+    Pelican settings used:
+        DISQUS_SITENAME     -> if set, enables Disqus comments with the given site name
+
+    Pelican data used:
+        None
+
+     Pelican fields used:
+        None
+#}
+
+
+{% if DISQUS_SITENAME %}
+
+    <script>
+        var disqus_shortname = "{{ DISQUS_SITENAME }}";
+
+        (function () {
+            var script = document.createElement("script");
+
+            script.async = true;
+            script.type = "text/javascript";
+            script.src = "https://" + disqus_shortname + ".disqus.com/count.js";
+
+            (
+                document.getElementsByTagName("head")[0] ||
+                document.getElementsByTagName("body")[0]
+            ).appendChild(script);
+        }());
+    </script>
+
+{% endif %}

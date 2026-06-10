@@ -1,0 +1,33 @@
+{#  Links to an article's comment section.
+
+    Only displays anything if DISQUS_SITENAME is set in pelicanconf.py. For example:
+        DISQUS_SITENAME = "your-disqus-name"
+
+    Usually included on article-list pages, such as index.html.
+
+    ---------------------------------------------------------------------
+
+    CSS classes used:
+        comments-link       -> the whole comments link section
+
+    Pelican settings used:
+        DISQUS_SITENAME     -> if set, enables Disqus comments with the given site name
+        SITEURL             -> base URL prepended to the article URL for the permalink
+
+    Pelican data used:
+        article             -> the article object for the current page
+
+    Pelican fields used:
+        article.url         -> URL to the generated article page, used for the permalink and Disqus identifier
+#}
+
+
+{% if DISQUS_SITENAME %}
+
+    <p class="comments-link">
+        <a href="{{ SITEURL }}/{{ article.url }}#disqus_thread">
+            View comments
+        </a>
+    </p>
+
+{% endif %}
