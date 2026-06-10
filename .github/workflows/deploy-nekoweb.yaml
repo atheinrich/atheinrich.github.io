@@ -1,0 +1,33 @@
+name: Deploy to Nekoweb
+
+on:
+  push:
+    branches:
+      - output
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout output branch
+        uses: actions/checkout@v4
+
+      - name: Prepare build folder
+        run: |
+          mkdir -p build
+          rsync -av \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='build' \
+            ./ build/
+
+      - name: Deploy to Nekoweb
+        uses: mp-pinheiro/nekoweb-deploy@main
+        with:
+          API_KEY: ${{ secrets.NEKOWEB_API_KEY }}
+          BUILD_DIR: './build'
+          DEPLOY_DIR: '/cup.nekoweb.org'
+          CLEANUP: 'False'
+          DELAY: '5'
+          NEKOWEB_PAGENAME: 'cup'
