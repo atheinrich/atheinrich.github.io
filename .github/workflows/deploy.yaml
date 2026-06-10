@@ -3,7 +3,7 @@ name: Deploy to Nekoweb
 on:
   push:
     branches:
-      - main
+      - output
 
 jobs:
   deploy:
