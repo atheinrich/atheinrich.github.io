@@ -1,17 +1,24 @@
 OVERVIEW
 ========
-This directory is used to create blog posts and manage an HTML layout.
-It runs on the Pelican package in Python, which uses Jinja.
+Much headache has gone into this, but here's where things are at.
 
-Posts are designed to be human-readable as written and come in two flavors: 
+The main site is constructed manually in /extra.
+Anything in this folder is added to the site's root.
+
+The blog stuff is managed by Pelican, which uses Jinja.
+Posts and assets are added in /content.
+HTML and CSS are edited in /themes.
+Compilation is done automatically after running and of the following:
+	_preview_pelican.bat: locally runs the blog aspect of the site alone
+	_preview.bat:         locally runs the entire site
+	_push_output.bat:     commits the site files alone to git
+	_push_source.bat:     commits the source files along to git
+
+Blog posts are designed to be human-readable as written and come in two flavors: 
 	- Articles are html files that can be categorized and show up in lists.
 	- Pages are standalone html files that are never categorized.
 Posts are essentially instances of class objects in Pelican.
 They have properties, such as titles and dates.
-
-Webpage design is held in themes:
-	- Static defines the actual visuals.
-	- Templates defines how posts and other text are handled beforehand.
 
 Big-picture details can be configured in pelicanconf.py -- see themes for examples.
 
@@ -55,8 +62,11 @@ DIRECTORY
 │           ├── taglist.html		# (optional)  tags from posts
 │           └── tags.html			# (optional)  tags from posts
 ├── extra/							# manual additions to the website's root
+│   ├── elements.css	 			# style for the nekoweb tile
+│   ├── home.html		 			# after entryway
 │   ├── index.html		 			# first page viewed by visitors
-│   └── home.html		 			# after entryway
+│   ├── not_found.html		 		# error page
+│   └── style.css			 		# style for main pages
 ├── pelicanconf.py					# backend config for Pelican
 ├── publishconf.py					# ?
 └── output/							# results pushed to github
@@ -92,4 +102,4 @@ Try this if you don't know what's wrong.
 OTHER
 -----
 The package pelican-render-math must be installed for equation formatting.
-I added deploy.yaml to themes\.github\workflows to push directly to nekoweb.
+I added deploy.yaml to .github\workflows to push directly to nekoweb.

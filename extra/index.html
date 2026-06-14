@@ -1,50 +1,52 @@
-<!--  Article-list pages.
+<!-- Homepage
 
-    Used for the main homepage/blog index.
+    Basic idea of the html+css+js ecosystem:
 
-    ---------------------------------------------------------------------
+    - HTML creates elements
+    -- Some terms are built-in tags, like body, head, and title
+    -- Others are custom ids, like id="canvas"
 
-    CSS classes used:
-        entry-page          -> the main page container
-        entry-box           -> the main content container
-        enter-button        -> the button to enter the site
+    - CSS selects elements and applies styles
+    -- It can select elements by built-in tag, id, or class
+
+    - JavaScript finds and manipulates elements
+    -- It can select elements by their id, class, or tag name
 -->
 
 
+<!-- This preamble sets up the basic structure of the HTML document -->
 <!DOCTYPE html>
+<html lang="en">
 
-<html>
+<!-- Head is the section that contains meta information about the document -->
+<head>
 
-    <head>
+    <!-- These tags tell the browser what to do with the page -->
+	<meta charset="UTF-8">
 
-        <title>
-            Welcome
-        </title>
+    <!-- Viewport is used to control the layout on mobile browsers -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link rel="stylesheet"
-            href="style.css"
-            type="text/css" />
+    <!-- Title is the name of the page that appears in the browser tab -->
+    <title>
+        Welcome
+    </title>
 
-    </head>
+    <!-- Link is used to link external resources like CSS files -->
+    <!-- Stylesheet is a keyword for linking CSS files -->
+    <link rel="stylesheet" href="css/style.css">
 
-    <body class="entry-page">
+</head>
 
-        <main class="entry-box">
+<!-- Body is the section that contains the actual content of the page -->
+<body>
 
-            <h1>
-                my site
-            </h1>
+    <!-- Canvas is an abstract container for drawing graphics -->
+	<canvas id="sand-screen"></canvas>
 
-            <p>
-                you have found the entrance
-            </p>
-
-            <a class="enter-button" href="home.html">
-                enter
-            </a>
-
-        </main>
-
-    </body>
+    <!-- Script is used to include external JavaScript files -->
+	<script src="js/sand.js"></script>
+    
+</body>
 
 </html>
