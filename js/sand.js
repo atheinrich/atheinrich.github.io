@@ -1,3 +1,4 @@
+// -----------------------------------------------------------------------------
 /*  Sand / Water Reveal Simulation
 
 	Overview for construction:
@@ -26,7 +27,7 @@ const ctx = canvas.getContext("2d");
 // Each simulated cell is drawn as a cellSize × cellSize pixel square.
 // Larger cellSize = fewer cells = faster, chunkier particles.
 // Smaller cellSize = more cells = slower, finer particles.
-const cellSize = 4;
+const cellSize = 5;
 
 // Water tries to move horizontally when it cannot move downward.
 // Larger values make water spread out more aggressively.
@@ -58,7 +59,7 @@ const WATER = 3;
 
 // The current brush selected by the user.
 // This is changed by the Sand/Water buttons created below.
-let activeMaterial = SAND;
+let activeMaterial = WATER;
 
 
 // -----------------------------------------------------------------------------
@@ -180,8 +181,97 @@ function inBounds(x, y) {
 
 
 // -----------------------------------------------------------------------------
+// Buttons
+// -----------------------------------------------------------------------------
+
+// Is the pointer inside this rectangle?
+function pointInsideRect(px, py, rect) {
+	return (
+		px >= rect.x &&
+		px <= rect.x + rect.width &&
+		py >= rect.y &&
+		py <= rect.y + rect.height
+	);
+}
+
+// List of all clickable regions on the canvas.
+const canvasButtons = [];
+
+function addCanvasButton(name, x, y, width, height, onClick) {
+	canvasButtons.push({
+		name,
+		x,
+		y,
+		width,
+		height,
+		onClick,
+	});
+}
+
+// Change cursor for clickable regions
+function updateCursorRegion(px, py) {
+	for (const button of canvasButtons) {
+		if (pointInsideRect(px, py, button)) {
+			document.body.classList.add("over-canvas-button");
+			return;
+		}
+	}
+
+	document.body.classList.remove("over-canvas-button");
+}
+
+// -----------------------------------------------------------------------------
 // Hidden barrier construction
 // -----------------------------------------------------------------------------
+
+const enterSignPattern = [
+	"11111111111111111111111111111111111111111111111111111111111111111111111111111111111",
+	"1.................................................................................1",
+	"1.....................111111..11.....11.11111111..1111..111111....................1",
+	"1....................11....11.11.....11.11.....11.1111.11....11...................1",
+	"1....................11.......11.....11.11.....11..11..11.........................1",
+	"1....................11.......11.....11.11111111..11....111111....................1",
+	"1....................11.......11.....11.11...................11...................1",
+	"1....................11....11.11.....11.11.............11....11...................1",
+	"1.....................111111...1111111..11..............111111....................1",
+	"1.................................................................................1",
+	"1...111111..11.....11.11111111..11111111...1111111.....111....11111111..11111111..1",
+	"1..11....11.11.....11.11.....11.11.....11.11.....11...11.11...11.....11.11.....11.1",
+	"1..11.......11.....11.11.....11.11.....11.11.....11..11...11..11.....11.11.....11.1",
+	"1..11.......11.....11.11111111..11111111..11.....11.11.....11.11111111..11.....11.1",
+	"1..11.......11.....11.11........11.....11.11.....11.111111111.11...11...11.....11.1",
+	"1..11....11.11.....11.11........11.....11.11.....11.11.....11.11....11..11.....11.1",
+	"1...111111...1111111..11........11111111...1111111..11.....11.11.....11.11111111..1",
+	"1.................................................................................1",
+	"11111111111111111111111111111111111111111111111111111111111111111111111111111111111",
+];
+
+const aboutSignPattern = [
+	"1111111111111111111111111111111111111",
+	"1...................................1",
+	"1...11...11111...1111..1....1.11111.1",
+	"1..1..1..1....1.1....1.1....1...1...1",
+	"1.1....1.11111..1....1.1....1...1...1",
+	"1.111111.1....1.1....1.1....1...1...1",
+	"1.1....1.1....1.1....1.1....1...1...1",
+	"1.1....1.11111...1111...1111....1...1",
+	"1...................................1",
+	"1111111111111111111111111111111111111",
+];
+
+
+const blogSignPattern = [
+	"1111111111111111111111111111111",
+	"1.............................1",
+	"1.11111..1.......1111...1111..1",
+	"1.1....1.1......1....1.1....1.1",
+	"1.11111..1......1....1.1......1",
+	"1.1....1.1......1....1.1..111.1",
+	"1.1....1.1......1....1.1....1.1",
+	"1.11111..111111..1111...1111..1",
+	"1.............................1",
+	"1111111111111111111111111111111",
+];
 
 function makeBarriers() {
 	// Barriers are part of the physical simulation from the beginning.
@@ -190,7 +280,79 @@ function makeBarriers() {
 	// However, they are not drawn until revealed[i] = 1.
 	// This gives the "particles reveal the hidden structure" effect.
 
+	// Clear previous buttons.
+	canvasButtons.length = 0;
 
+	const scale = 1;
+	const gapCells = 4;
+
+	// -------------------------------------------------------------------------
+	// ENTER sign
+	// -------------------------------------------------------------------------
+
+	const enterWidthCells = enterSignPattern[0].length * scale;
+	const enterHeightCells = enterSignPattern.length * scale;
+
+	const enterXCells = Math.floor((cols - enterWidthCells) / 2);
+	const enterYCells = Math.floor(rows * 0.28);
+
+	addBarrierPattern(enterSignPattern, enterXCells, enterYCells, scale);
+
+	addCanvasButton(
+		"enter",
+		enterXCells * cellSize,
+		enterYCells * cellSize,
+		enterWidthCells * cellSize,
+		enterHeightCells * cellSize,
+		() => {
+			window.location.href = "../home.html";
+		}
+	);
+
+
+	// -------------------------------------------------------------------------
+	// ABOUT and BLOG signs
+	// -------------------------------------------------------------------------
+
+	const aboutWidthCells = aboutSignPattern[0].length * scale;
+	const aboutHeightCells = aboutSignPattern.length * scale;
+
+	const blogWidthCells = blogSignPattern[0].length * scale;
+	const blogHeightCells = blogSignPattern.length * scale;
+
+	const totalLowerWidthCells = aboutWidthCells + gapCells + blogWidthCells;
+
+	const lowerYCells = enterYCells + enterHeightCells + gapCells;
+	const lowerRowOffsetCells = -1;
+	const aboutXCells = Math.floor((cols - totalLowerWidthCells) / 2) + lowerRowOffsetCells;
+	const blogXCells = aboutXCells + aboutWidthCells + gapCells;
+
+	addBarrierPattern(aboutSignPattern, aboutXCells, lowerYCells, scale);
+	addBarrierPattern(blogSignPattern, blogXCells, lowerYCells, scale);
+
+	addCanvasButton(
+		"about",
+		aboutXCells * cellSize,
+		lowerYCells * cellSize,
+		aboutWidthCells * cellSize,
+		aboutHeightCells * cellSize,
+		() => {
+			window.location.href = "../about.html";
+		}
+	);
+
+	addCanvasButton(
+		"blog",
+		blogXCells * cellSize,
+		lowerYCells * cellSize,
+		blogWidthCells * cellSize,
+		blogHeightCells * cellSize,
+		() => {
+			window.location.href = "../blog/index.html";
+		}
+	);
+
+	/* Old
 	// Bowl-shaped barrier near the bottom.
 	for (let x = 0; x < cols; x++) {
 		// dx measures horizontal distance from the center.
@@ -234,8 +396,42 @@ function makeBarriers() {
 			}
 		}
 	}
+	*/
 }
 
+function addBarrierPattern(pattern, x0, y0, scale = 1) {
+	// pattern is an array of strings.
+	// Each character represents one tiny "pixel" of the hidden barrier.
+	//
+	// Example:
+	// "111"
+	// "1.1"
+	// "111"
+	//
+	// Here, "1" means barrier and "." means empty space.
+
+	for (let row = 0; row < pattern.length; row++) {
+		for (let col = 0; col < pattern[row].length; col++) {
+			// Only the marked cells become barriers.
+			// Everything else is ignored, leaving whatever was already in the grid.
+			if (pattern[row][col] !== "1") continue;
+
+			// scale lets each pattern cell become a larger block.
+			// scale = 1 gives tiny pixel art.
+			// scale = 3 makes every pattern cell a 3x3 block.
+			for (let sy = 0; sy < scale; sy++) {
+				for (let sx = 0; sx < scale; sx++) {
+					const x = x0 + col * scale + sx;
+					const y = y0 + row * scale + sy;
+
+					if (inBounds(x, y)) {
+						grid[index(x, y)] = BARRIER;
+					}
+				}
+			}
+		}
+	}
+}
 
 // -----------------------------------------------------------------------------
 // User interaction: cursor creates particles
@@ -282,8 +478,8 @@ function revealAround(x, y) {
 	// When a particle hits something, reveal nearby barrier cells.
 	// This makes the hidden structure appear gradually around contact points.
 
-	for (let dy = -2; dy <= 2; dy++) {
-		for (let dx = -2; dx <= 2; dx++) {
+	for (let dy = -4; dy <= 4; dy++) {
+		for (let dx = -4; dx <= 4; dx++) {
 			const nx = x + dx;
 			const ny = y + dy;
 
@@ -476,10 +672,10 @@ function draw() {
 
 			if (cell === SAND) {
 				// Sand color.
-				ctx.fillStyle = "#d6b45f";
+				ctx.fillStyle = "#644700";
 			} else if (cell === WATER) {
 				// Water color.
-				ctx.fillStyle = "#3aa7ff";
+				ctx.fillStyle = "#14368A";
 			} else if (cell === BARRIER && revealed[i]) {
 				// Barrier color.
 				// Hidden barriers are skipped until revealed[i] is true.
@@ -523,15 +719,50 @@ function loop() {
 // Browser event hooks
 // -----------------------------------------------------------------------------
 
+let isDrawing = false;
+
+canvas.addEventListener("pointerdown", (e) => {
+	const x = e.clientX;
+	const y = e.clientY;
+
+	for (const button of canvasButtons) {
+		if (pointInsideRect(x, y, button)) {
+			button.onClick();
+			return;
+		}
+	}
+
+	isDrawing = true;
+	canvas.setPointerCapture(e.pointerId);
+	spawnMaterial(x, y);
+});
+
 canvas.addEventListener("pointermove", (e) => {
-	// Whenever the cursor moves over the canvas, spawn the selected material.
-	//
-	// This is where HTML and JS interact:
-	// the HTML canvas receives a browser event,
-	// and JS responds by modifying the simulation grid.
+
+	// Enter a clickable region.
+	updateCursorRegion(e.clientX, e.clientY);
+
+	// On touchscreens, require touch-and-drag.
+	if (e.pointerType === "touch" && !isDrawing) return;
+
+	// On mouse, preserve the old behavior: just moving the cursor drops material.
 	spawnMaterial(e.clientX, e.clientY);
 });
 
+canvas.addEventListener("pointerleave", () => {
+
+	// Leave a clickable region.
+	document.body.classList.remove("over-enter-button");
+});
+
+canvas.addEventListener("pointerup", (e) => {
+	isDrawing = false;
+	canvas.releasePointerCapture(e.pointerId);
+});
+
+canvas.addEventListener("pointercancel", () => {
+	isDrawing = false;
+});
 
 window.addEventListener("resize", resize);
 // If the browser window changes size, rebuild the canvas and grid.
@@ -542,11 +773,13 @@ window.addEventListener("resize", resize);
 // Start the program
 // -----------------------------------------------------------------------------
 
-makeMaterialSelector();
 // Create the Sand/Water buttons.
+makeMaterialSelector();
 
-resize();
 // Initialize canvas size, grid arrays, and hidden barriers.
+resize();
 
-loop();
 // Begin the animation.
+loop();
+
+// -----------------------------------------------------------------------------

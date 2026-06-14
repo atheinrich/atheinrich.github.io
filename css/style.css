@@ -23,6 +23,22 @@ canvas {
 
 /* -------------------------------------------------------------- */
 /* Cursors */
+/* General site cursor. */
+body,
+a,
+button {
+	cursor: url("../images/cup_water_point.cur") 4 3, auto;
+}
+
+body:active,
+a:active,
+button:active {
+	cursor: url("../images/cup_water_click.cur") 4 3, auto;
+}
+
+
+/* Entryway brush cursors. */
+/* Sand brush */
 body.brush-sand,
 body.brush-sand canvas,
 body.brush-sand button {
@@ -43,6 +59,7 @@ body.brush-sand #material-selector button:active {
 	cursor: url("../images/cup_sand_click.cur") 4 3, auto;
 }
 
+/* Water brush */
 body.brush-water,
 body.brush-water canvas,
 body.brush-water button {
@@ -61,6 +78,20 @@ body.brush-water button:active {
 
 body.brush-water #material-selector button {
 	cursor: url("../images/cup_water_click.cur") 4 3, auto;
+}
+
+/* Cursor for clickable regions in the sand/water simulation */
+body.brush-sand.over-canvas-button canvas {
+	cursor: url("../images/cup_sand_click.cur") 4 3, auto;
+}
+
+body.brush-water.over-canvas-button canvas {
+	cursor: url("../images/cup_water_click.cur") 4 3, auto;
+}
+
+/* Mobile fix */
+#sand-screen {
+	touch-action: none;
 }
 
 /* -------------------------------------------------------------- */
